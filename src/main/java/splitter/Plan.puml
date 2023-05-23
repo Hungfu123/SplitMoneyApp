@@ -1,0 +1,49 @@
+@startuml
+class Ausgaben {
+- String name
+- Double ausgabe
++ Ausgaben (String name, Double ausgabe)
++ String getName()
++ Double getAusgabe()
+
+}
+
+class AusgabenVerwaltung{
+-  List <Ausgaben> ausgaben
+- AusgabenVerwaltung()
++addAusgabe(Ausgaben ausgabe)
++List<Ausgaben> getAusgaben()
+
+}
+class AusgabenRechner{
+-  List <Ausgaben> ausgaben
+- AusgabenRechner(List<Ausgaben> ausgaben)
++ List<String> rechneSchulden
+
+}
+
+class CSVReader{
++ CSVReader()
++ List<Ausgaben> readAusgaben(String filePath)
+- Ausgaben parseExpenseFromCSV(String line)
+
+}
+
+class Main{
+- AusgabenVerwaltung verwaltung
+- AusgabenRechner rechner
+- CSVReader csvreader
++ main(String args)
+
+}
+
+Main --> AusgabenVerwaltung
+Main --> AusgabenRechner
+Main -->CSVReader
+Main "1" --> "*" Ausgaben
+CSVReader --> "*" Ausgaben
+AusgabenVerwaltung --> "*" Ausgaben
+AusgabenRechner --> "*" Ausgaben
+AusgabenRechner --> "*" AusgabenVerwaltung
+
+@enduml
