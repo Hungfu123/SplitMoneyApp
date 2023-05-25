@@ -9,12 +9,11 @@ public class Main {
     CSVReader reader = new CSVReader();
     AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
     List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
+    AusgabenRechner rechner = new AusgabenRechner(ausgaben);
 
-    verwaltung.addAusgabeninListe(ausgaben);
-    List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
 
-    System.out.println(ausgabenListe);
   }
+
 
 
 }

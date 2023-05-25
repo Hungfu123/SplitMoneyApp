@@ -20,7 +20,7 @@ public class AusgabenVerwaltungTest {
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
         List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
 
-        verwaltung.addAusgabeninListe(ausgaben);
+        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
 
         assertThat(ausgabenListe.size()).isEqualTo(ausgaben.size());
@@ -33,7 +33,7 @@ public class AusgabenVerwaltungTest {
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
         List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
 
-        verwaltung.addAusgabeninListe(ausgaben);
+        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
 
         assertThat(ausgabenListe.get(0)).hasToString( "Ausgaben{ Name='Willy', Ausgabe=320.0}");
@@ -46,9 +46,25 @@ public class AusgabenVerwaltungTest {
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
         List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
 
-        verwaltung.addAusgabeninListe(ausgaben);
+        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
-
+        System.out.println(ausgabenListe);
         assertThat(ausgabenListe.size()).isNotZero();
+
+    }
+    @DisplayName("Erstes Element  wurde  gelöscht")
+    @Test
+    void removeErstesElement() throws IOException {
+        CSVReader reader = new CSVReader();
+        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
+        List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
+        verwaltung.addAusgabenInArrayListe(ausgaben);
+
+        verwaltung.removeAusgabeVonListe(0);
+
+
+        assertThat(ausgaben.size()-1).isEqualTo(6);
+
+
     }
 }
