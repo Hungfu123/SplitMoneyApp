@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AusgabenVerwaltungTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-29T17:03:41" hostname="DESKTOP-5P8TPFM" time="0.169">
+  <properties/>
+  <testcase name="Das erste Element ist Willy mit 320.0" classname="AusgabenVerwaltungTest" time="0.154"/>
+  <testcase name="printe die CSV Datei als Array aus" classname="AusgabenVerwaltungTest" time="0.008"/>
+  <testcase name="Die ArrayListe ist nicht leer" classname="AusgabenVerwaltungTest" time="0.002"/>
+  <testcase name="Erstes Element  wurde  gelÃ¶scht" classname="AusgabenVerwaltungTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
