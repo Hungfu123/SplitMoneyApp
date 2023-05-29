@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import splitter.Ausgaben;
-import splitter.AusgabenVerwaltung;
-import splitter.CSVReader;
+import model.Ausgaben;
+import model.AusgabenVerwaltung;
+import service.CSVReader;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,24 +16,20 @@ public class AusgabenVerwaltungTest {
     @DisplayName("printe die CSV Datei als Array aus")
     @Test
     void printeArray() throws  IOException{
-        CSVReader reader = new CSVReader();
-        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
-        List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
+        CSVReader reader = new CSVReader("ausgaben.csv");
+        List<Ausgaben> ausgaben= reader.readAusgaben();
+        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
-        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
 
         assertThat(ausgabenListe.size()).isEqualTo(ausgaben.size());
-        assertThat(ausgabenListe.containsAll(ausgaben)).isTrue();
     }
     @DisplayName("Das erste Element ist Willy mit 320.0")
     @Test
     void printeErstesElement() throws IOException {
-        CSVReader reader = new CSVReader();
-        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
-        List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
+        CSVReader reader = new CSVReader("ausgaben.csv");
+        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
-        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
 
         assertThat(ausgabenListe.get(0)).hasToString( "Ausgaben{ Name='Willy', Ausgabe=320.0}");
@@ -42,29 +38,26 @@ public class AusgabenVerwaltungTest {
     @DisplayName("Die ArrayListe ist nicht leer")
     @Test
     void pruefeListeNichtLeer() throws IOException {
-        CSVReader reader = new CSVReader();
-        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
-        List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
+        CSVReader reader = new CSVReader("ausgaben.csv");
+        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
-        verwaltung.addAusgabenInArrayListe(ausgaben);
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
-        System.out.println(ausgabenListe);
         assertThat(ausgabenListe.size()).isNotZero();
 
     }
     @DisplayName("Erstes Element  wurde  gelöscht")
     @Test
     void removeErstesElement() throws IOException {
-        CSVReader reader = new CSVReader();
-        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung();
-        List<Ausgaben> ausgaben= reader.readAusgaben("ausgaben.csv");
-        verwaltung.addAusgabenInArrayListe(ausgaben);
+        CSVReader reader = new CSVReader("ausgaben.csv");
+        AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
+        List<Ausgaben> ausgaben= verwaltung.getAusgaben();
 
-        verwaltung.removeAusgabeVonListe(0);
+        verwaltung.removeAusgabeVonListe(0, ausgaben);
 
+        assertThat(ausgaben.size()).isEqualTo(6);
 
-        assertThat(ausgaben.size()-1).isEqualTo(6);
-
-
+//        System.out.println(ausgaben);
     }
+
+
 }

@@ -1,0 +1,76 @@
+@startuml
+
+class Ausgaben {
+  - NAME: String
+  - AUSGABE: Double
+  + Ausgaben(NAME: String, AUSGABE: Double)
+  + getNAME(): String
+  + getAUSGABE(): Double
+  + toString(): String
+}
+
+interface IAusgabenVerwaltung {
+  + addAusgaben(ausgaben: Ausgaben, a: List<Ausgaben>): void
+  + addAusgabenInArrayListe(a: List<Ausgaben>): void
+  + removeAusgabeVonListe(index: int, a: List<Ausgaben>): void
+  + getAusgaben(): List<Ausgaben>
+}
+
+class AusgabenVerwaltung {
+  - ausgabenListe: List<Ausgaben>
+  - reader: ICSVReader
+  + AusgabenVerwaltung(reader: ICSVReader)
+  + addAusgaben(ausgaben: Ausgaben, a: List<Ausgaben>): void
+  + addAusgabenInArrayListe(a: List<Ausgaben>): void
+  + removeAusgabeVonListe(index: int, a: List<Ausgaben>): void
+  + getAusgaben(): List<Ausgaben>
+}
+
+class SchuldenAusgaben {
+  - verwaltung: AusgabenVerwaltung
+  - ausgaben: Ausgaben
+  - rechner: AusgabenRechner
+  - reader: CSVReader
+  + SchuldenAusgaben(verwaltung: AusgabenVerwaltung, ausgaben: Ausgaben, rechner: AusgabenRechner, reader: CSVReader)
+  + main(args: String[]): void
+}
+
+class AusgabenRechner {
+  - ausgaben: List<Ausgaben>
+  + AusgabenRechner(ausgaben: List<Ausgaben>)
+  + summiereEinzelneAusgaben(): Map<String, Double>
+  + getGesamtsumme(): Double
+  + getAnzahlPersonen(): int
+  + rechneAverageDebtPerPerson(): double
+  + erstelleSchuldenMap(): Map<String, Map<String, Double>>
+}
+
+interface ICSVReader {
+  + readAusgaben(): List<Ausgaben>
+}
+
+interface IAusgabenRechner {
+    +getGesamtsumme(): Double
+    +getAnzahlPersonen(): int
+    +rechneAverageDebtPerPerson(): Double
+    +erstelleSchuldenMap(): Map<String, Map<String, Double>>
+}
+
+class CSVReader {
+  - filepath: String
+  + CSVReader(filepath: String)
+  + readAusgaben(): List<Ausgaben>
+  + readAusgaben3(): Map<String, Double>
+  - parseAusgabenVonCSV(line: String): Ausgaben
+}
+
+Ausgaben --|> IAusgabenVerwaltung
+AusgabenVerwaltung --|> IAusgabenVerwaltung
+SchuldenAusgaben o-- AusgabenVerwaltung
+SchuldenAusgaben o-- Ausgaben
+SchuldenAusgaben o-- AusgabenRechner
+SchuldenAusgaben o-- CSVReader
+AusgabenRechner --|> IAusgabenRechner
+CSVReader --|> ICSVReader
+
+@enduml
