@@ -16,7 +16,7 @@ public class AusgabenVerwaltungTest {
     @DisplayName("printe die CSV Datei als Array aus")
     @Test
     void printeArray() throws  IOException{
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
@@ -27,7 +27,7 @@ public class AusgabenVerwaltungTest {
     @DisplayName("Das erste Element ist Willy mit 320.0")
     @Test
     void printeErstesElement() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
@@ -38,7 +38,7 @@ public class AusgabenVerwaltungTest {
     @DisplayName("Die ArrayListe ist nicht leer")
     @Test
     void pruefeListeNichtLeer() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
         List<Ausgaben> ausgabenListe = verwaltung.getAusgaben();
@@ -48,7 +48,7 @@ public class AusgabenVerwaltungTest {
     @DisplayName("Erstes Element  wurde  gelöscht")
     @Test
     void removeErstesElement() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
         List<Ausgaben> ausgaben= verwaltung.getAusgaben();
 

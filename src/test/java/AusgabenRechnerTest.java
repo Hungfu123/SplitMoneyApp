@@ -16,7 +16,7 @@ public class AusgabenRechnerTest {
     @DisplayName("Gesamtkosten sind 1053 Euro")
     @Test
     void getGesamtkosten() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenRechner rechner = new AusgabenRechner();
 
@@ -26,7 +26,7 @@ public class AusgabenRechnerTest {
     @DisplayName("Personenanzahl beträgt 5 in ausgabe.csv")
     @Test
     void getPersonenAnzahl() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenRechner rechner = new AusgabenRechner();
 
@@ -37,7 +37,7 @@ public class AusgabenRechnerTest {
     @DisplayName("Schulden wurden beglichen auf test2.csv")
     @Test
     void begleicheSchulden() throws IOException {
-        CSVReader reader = new CSVReader("test2.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenRechner rechner = new AusgabenRechner();
 
@@ -49,7 +49,7 @@ public class AusgabenRechnerTest {
     @DisplayName("printe Schulden von test.csv")
     @Test
     void printeSchulden() throws IOException {
-        CSVReader reader = new CSVReader("test.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenRechner rechner = new AusgabenRechner();
 
@@ -62,7 +62,7 @@ public class AusgabenRechnerTest {
     @DisplayName("printe Schulden von ausgaben.csv")
     @Test
     void printeSchuldenAusgabe() throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         AusgabenRechner rechner = new AusgabenRechner();
         Map<String, Map<String, Double>> schuldenMap = rechner.erstelleSchuldenMap(ausgaben);
@@ -73,7 +73,7 @@ public class AusgabenRechnerTest {
     @DisplayName("Erstes Element wurde aus der Liste entfernt und rechnet die Schulden. Kein Willy")
     @Test
     void rechneTest () throws IOException {
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
 
         List<Ausgaben> ausgaben= reader.readAusgaben();

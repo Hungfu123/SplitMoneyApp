@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 
 public class CSVReader implements ICSVReader{
     private final String filepath;
-    public  CSVReader(String filepath){
+    public  CSVReader(){
 
-        this.filepath = filepath;
+        this.filepath = "ausgaben.csv";
     }
 // Liest die Zeilen der CSV und wandelt jede Zeile in eine Ausgabeninstanz um
 // und wandelt dies in eine Liste

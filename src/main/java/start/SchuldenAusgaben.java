@@ -19,7 +19,7 @@ public class SchuldenAusgaben {
   }
 
   public static void main(String[] args) throws IOException {
-    CSVReader reader = new CSVReader("ausgaben.csv");
+    CSVReader reader = new CSVReader();
     AusgabenVerwaltung verwaltung = new AusgabenVerwaltung(reader);
     List<Ausgaben> ausgabenList = verwaltung.getAusgaben();
     AusgabenRechner rechner = new AusgabenRechner();

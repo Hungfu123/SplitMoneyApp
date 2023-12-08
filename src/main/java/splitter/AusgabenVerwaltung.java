@@ -1,5 +1,7 @@
 package splitter;
 
+import model.Ausgaben;
+
 import java.util.ArrayList;
 import java.util.List;
 

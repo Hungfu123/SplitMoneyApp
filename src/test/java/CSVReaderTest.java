@@ -13,7 +13,7 @@ public class CSVReaderTest {
     @DisplayName("lese ausgaben.csv und die Größe beträgt 6")
     @Test
     void leseAusgabenAusDatei() throws  Exception{
-        CSVReader reader = new CSVReader("ausgaben.csv");
+        CSVReader reader = new CSVReader();
         List<Ausgaben> ausgaben= reader.readAusgaben();
         assertThat(ausgaben).hasSize(7);
     }
