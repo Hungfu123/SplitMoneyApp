@@ -12,10 +12,9 @@ import java.util.Map;
 public class SchuldenAusgaben {
 
   private final AusgabenRechner rechner;
-  private final CSVReader reader;
-  public SchuldenAusgaben(AusgabenRechner rechner, CSVReader reader) {
+
+  public SchuldenAusgaben(AusgabenRechner rechner) {
     this.rechner = rechner;
-    this.reader = reader;
   }
 
   public static void main(String[] args) throws IOException {
@@ -24,11 +23,11 @@ public class SchuldenAusgaben {
     List<Ausgaben> ausgabenList = verwaltung.getAusgaben();
     AusgabenRechner rechner = new AusgabenRechner();
 
-    SchuldenAusgaben schuldenAusgaben = new SchuldenAusgaben(rechner, reader);
+    SchuldenAusgaben schuldenAusgaben = new SchuldenAusgaben(rechner);
     schuldenAusgaben.start(ausgabenList);
   }
 
-  public void start(List<Ausgaben> ausgaben) throws IOException {
+  public void start(List<Ausgaben> ausgaben){
     Map<String, Map<String, Double>> schuldenMap = rechner.erstelleSchuldenMap(ausgaben);
     System.out.println(schuldenMap);
   }
